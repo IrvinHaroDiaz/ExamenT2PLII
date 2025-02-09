@@ -9,4 +9,5 @@ public interface IUsuario {
     List<TblUsuariocl2> listarTodos();
     void actualizar(TblUsuariocl2 usuario);
     void eliminar(int id);
+	TblUsuariocl2 buscarPorId(String usuario);
 }

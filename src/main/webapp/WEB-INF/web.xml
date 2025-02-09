@@ -11,22 +11,10 @@
   	<servlet-class>Controlador.ControladorLogueo</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>ControladorUsuarioServlet</servlet-name>
-  	<display-name>ControladorUsuarioServlet</display-name>
+  	<servlet-name>ControladorProveedor</servlet-name>
+  	<display-name>ControladorProveedor</display-name>
   	<description></description>
-  	<servlet-class>Controlador.ControladorUsuarioServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>Controladorlogin</servlet-name>
-  	<display-name>Controladorlogin</display-name>
-  	<description></description>
-  	<servlet-class>Controlador.Controladorlogin</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>ControladorLoing</servlet-name>
-  	<display-name>ControladorLoing</display-name>
-  	<description></description>
-  	<servlet-class>Controlador.ControladorLoing</servlet-class>
+  	<servlet-class>Controlador.ControladorProveedor</servlet-class>
   </servlet>
   <servlet>
   	<servlet-name>ControladorUsuario</servlet-name>
@@ -34,44 +22,17 @@
   	<description></description>
   	<servlet-class>Controlador.ControladorUsuario</servlet-class>
   </servlet>
-  <servlet>
-  	<servlet-name>ProveedorServlet</servlet-name>
-  	<display-name>ProveedorServlet</display-name>
-  	<description></description>
-  	<servlet-class>Controlador.ProveedorServlet</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>UsuarioServlet</servlet-name>
-  	<display-name>UsuarioServlet</display-name>
-  	<description></description>
-  	<servlet-class>Controlador.UsuarioServlet</servlet-class>
-  </servlet>
   <servlet-mapping>
   	<servlet-name>ControladorLogueo</servlet-name>
   	<url-pattern>/ControladorLogueo</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>ControladorUsuarioServlet</servlet-name>
-  	<url-pattern>/ControladorUsuarioServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>Controladorlogin</servlet-name>
-  	<url-pattern>/Controladorlogin</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ControladorLoing</servlet-name>
-  	<url-pattern>/ControladorLoing</url-pattern>
+  	<servlet-name>ControladorProveedor</servlet-name>
+  	<url-pattern>/ControladorProveedor</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>ControladorUsuario</servlet-name>
   	<url-pattern>/ControladorUsuario</url-pattern>
   </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>ProveedorServlet</servlet-name>
-  	<url-pattern>/ProveedorServlet</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>UsuarioServlet</servlet-name>
-  	<url-pattern>/UsuarioServlet</url-pattern>
-  </servlet-mapping>
+
 </web-app>

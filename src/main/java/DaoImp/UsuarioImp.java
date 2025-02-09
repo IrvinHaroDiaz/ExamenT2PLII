@@ -1,10 +1,9 @@
 package DaoImp;
 
 import java.util.List;
-
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,41 +15,73 @@ import model.TblUsuariocl2;
 @Transactional
 public class UsuarioImp implements IUsuario{
 
-    @PersistenceContext
-    private EntityManager entityManager;
-    
-	@Override
-	public void registrar(TblUsuariocl2 usuario) {
-		entityManager.persist(usuario);
+	private EntityManagerFactory emf = Persistence.createEntityManagerFactory("ExamenT2LPII");
+
+    @Override
+    public void registrar(TblUsuariocl2 usuario) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.persist(usuario);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public TblUsuariocl2 buscarPorId(String usuario) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT u FROM TblUsuariocl2 u WHERE u.usuariocl2 = :usuario", TblUsuariocl2.class)
+                     .setParameter("usuario", usuario)
+                     .getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
+
+    @Override
+    public List<TblUsuariocl2> listarTodos() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT u FROM TblUsuariocl2 u", TblUsuariocl2.class).getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public void actualizar(TblUsuariocl2 usuario) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            em.merge(usuario);
+            em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    @Override
+    public void eliminar(int id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TblUsuariocl2 usuario = em.find(TblUsuariocl2.class, id);
+            if (usuario != null) {
+                em.getTransaction().begin();
+                em.remove(usuario);
+                em.getTransaction().commit();
+            }
+        } finally {
+            em.close();
+        }
     }
 
 	@Override
 	public TblUsuariocl2 buscarPorId(int id) {
-		return entityManager.find(TblUsuariocl2.class, id);
-    }
-
-	@Override
-	public List<TblUsuariocl2> listarTodos() {
-		TypedQuery<TblUsuariocl2> query = entityManager.createQuery("SELECT u FROM TblUsuariocl2 u", TblUsuariocl2.class);
-        return query.getResultList();
-    }
-
-	@Override
-	public void actualizar(TblUsuariocl2 usuario) {
-		entityManager.merge(usuario);
-    }
-
-	@Override
-	public void eliminar(int id) {
-		TblUsuariocl2 usuario = buscarPorId(id);
-        if (usuario != null) {
-            entityManager.remove(usuario);
-        }
-	}
-
-	public boolean validarUsuario(String usuario, String password) {
 		// TODO Auto-generated method stub
-		return false;
+		return null;
 	}
-
 }
